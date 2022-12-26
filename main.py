@@ -57,35 +57,27 @@ video_formats = ['.mp4', '.mkv', '.avi', '.mov', '.wmv', '.flv', '.mpg', '.mpeg'
 for file in files:
     # check if the file is a video file
     if os.path.splitext(file)[1] not in video_formats:
-        print(f'Not a video file: {file}')
+        pass
     else:
-        print(f'Video file: {file}')
+
         # get the file name without the extension
         file_name = os.path.splitext(file)[0]
-        print(f'File name: {file_name}')
         # get the file extension
         file_extension = os.path.splitext(file)[1]
-        print(f'File extension: {file_extension}')
         # get the file path
         file_path = os.path.join(folder_path, file)
-        print(f'File path: {file_path}')
         # get the new file name
         new_file_name = re.sub(regex, template_name, file_name)
-        print(f'New file name: {new_file_name}')
 
         # remove kausi and jakso from the new file name
         new_file_name = new_file_name.replace('Kausi ', 'S')
         new_file_name = new_file_name.replace('Jakso ', 'E')
 
-        print(f'New file name: {new_file_name}')
-
         # get the new file path
         new_file_path = os.path.join(folder_path, new_file_name + file_extension)
-        print(f'New file path: {new_file_path}')
-        # rename the file
 
         try:
             os.rename(file_path, new_file_path)
-            print('Renamed')
+            print(f'Renamed {file} to {new_file_name + file_extension}')
         except:
             print('Error: File already exists')
