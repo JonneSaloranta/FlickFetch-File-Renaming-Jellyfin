@@ -66,6 +66,12 @@ for file in files:
         file_extension = os.path.splitext(file)[1]
         # get the file path
         file_path = os.path.join(folder_path, file)
+
+        # if file name doesnt match the regex, skip the file
+        if not re.match(regex, file_name):
+            print(f'Skipped {file}')
+            continue
+
         # get the new file name
         new_file_name = re.sub(regex, template_name, file_name)
 
